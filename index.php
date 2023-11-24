@@ -36,22 +36,26 @@ $xffHeaderParts = explode(":", $xffHeader);
 $xffHeaderWithoutPort = $xffHeaderParts[0];
 $xffGeolocation = getGeolocationData($xffHeaderWithoutPort);
 
-// Output both the X-Forwarded-For header, actual client IP, and geolocation information
-echo "X-Forwarded-For Header: $xffHeaderWithoutPort<br>";
 echo "Actual Client IP: $clientIp<br>";
-
 // Output geolocation information for the actual client IP
 if ($clientGeolocation && isset($clientGeolocation['country'])) {
-    echo "Geolocation for Actual IP - Country: {$clientGeolocation['country']}<br>";
-    // You can include more information like city, region, etc. depending on the API response
+    echo "Geolocation for Actual IP - Country: {$clientGeolocation['country']}, City: {$clientGeolocation['city']}<br>";
+    // You can include more information like region, etc. depending on the API response
 } else {
     echo "Geolocation information for Actual IP not available.<br>";
 }
 
+
+// Output both the X-Forwarded-For header, actual client IP, and geolocation information
+echo "<br>X-Forwarded-For Header: $xffHeaderWithoutPort<br>";
+
+
 // Output geolocation information for the X-Forwarded-For header
 if ($xffGeolocation && isset($xffGeolocation['country'])) {
-    echo "Geolocation for X-Forwarded-For - Country: {$xffGeolocation['country']}<br>";
-    // You can include more information like city, region, etc. depending on the API response
+    echo "Geolocation for X-Forwarded-For - Country: {$xffGeolocation['country']}, City: {$xffGeolocation['city']}<br>";
+    // You can include more information like region, etc. depending on the API response
 } else {
     echo "Geolocation information for X-Forwarded-For not available.<br>";
 }
+
+?>
