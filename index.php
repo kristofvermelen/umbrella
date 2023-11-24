@@ -47,7 +47,6 @@ $xffHeader = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDE
 $xffHeaderParts1 = explode(":", $xffHeader);
 $xffHeaderParts = explode(",", $xffHeaderParts1);
 $xffHeaderWithoutPort = $xffHeaderParts[0];
-$xffHeaderWithoutPort = $xffHeaderParts[0];
 $xffGeolocation = getGeolocationData($xffHeaderWithoutPort);
 
 echo "Actual Client IP: $clientIp<br>";
