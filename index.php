@@ -45,7 +45,8 @@ $xffHeader = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDE
 
 // Remove port if present in the X-Forwarded-For header
 $xffHeaderParts1 = explode(":", $xffHeader);
-$xffHeaderParts = explode(",", $xffHeaderParts1);
+$xffHeaderWithoutPort1 = $xffHeaderParts1[0];
+$xffHeaderParts = explode(",", $xffHeaderWithoutPort1);
 $xffHeaderWithoutPort = $xffHeaderParts[0];
 $xffGeolocation = getGeolocationData($xffHeaderWithoutPort);
 
