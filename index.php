@@ -59,6 +59,9 @@ if ($xffGeolocation && isset($xffGeolocation['country'])) {
     echo "Geolocation information for X-Forwarded-For not available.<br>";
 }
 
+// Get all HTTP headers
+$headers = getallheaders();
+
 // Output all HTTP headers
 echo "All HTTP Headers:<br>";
 foreach ($headers as $key => $value) {
