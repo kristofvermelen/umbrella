@@ -65,7 +65,7 @@ $headers = getallheaders();
 
 // Output all HTTP headers
 echo "<br><br>"
-echo "All HTTP Headers:<br>";
+echo "All HTTP Headers:<br><br>";
 foreach ($headers as $key => $value) {
     echo "$key: $value<br>";
 }
