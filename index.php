@@ -26,15 +26,12 @@ $clientIp = isset($headers['X-Client-Ip']) ? $$headers['X-Client-Ip'] : 'Not pro
 $headers = getallheaders();
 
 // Output all HTTP headers
-echo "<br><br>";
-echo "All HTTP Headers:<br><br>";
 foreach ($headers as $key => $value) {
     //echo "$key: $value<br>";
     if ($key === 'Client-Ip') {
         $clientIp = $value;
     }
 }
-
 
 // Remove port if present in the actual client IP
 $clientIpParts = explode(":", $clientIp);
@@ -72,7 +69,6 @@ if ($xffGeolocation && isset($xffGeolocation['country'])) {
 } else {
     echo "Geolocation information for X-Forwarded-For not available.<br>";
 }
-
 
 
 ?>
