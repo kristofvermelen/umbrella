@@ -72,7 +72,10 @@ $headers = getallheaders();
 echo "<br><br>";
 echo "All HTTP Headers:<br><br>";
 foreach ($headers as $key => $value) {
-    echo "$key: $value<br>";
+    //echo "$key: $value<br>";
+    if ($key === 'Client-Ip') {
+        echo "Client-Ip found in headers: $value<br>";
+    }
 }
 
 ?>
