@@ -31,7 +31,7 @@ $clientGeolocation = getGeolocationData($clientIp);
 $xffHeader = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : 'Not provided';
 
 // Remove port if present in the X-Forwarded-For header
-$xffHeader = strtok($xffHeader, ",");
+$xffHeader = strtok($xffHeader, ":");
 
 // Get geolocation data for the X-Forwarded-For header
 $xffGeolocation = getGeolocationData($xffHeader);
