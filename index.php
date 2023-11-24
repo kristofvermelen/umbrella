@@ -22,7 +22,8 @@ function getGeolocationData($ip) {
 $clientIp = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'Not provided';
 
 // Remove port if present in the actual client IP
-$clientIp = strtok($clientIp, ":");
+$clientIpParts = explode(":", $clientIp);
+$clientIp = $clientIpParts[0];
 
 // Get geolocation data for the actual client IP
 $clientGeolocation = getGeolocationData($clientIp);
@@ -31,13 +32,12 @@ $clientGeolocation = getGeolocationData($clientIp);
 $xffHeader = isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : 'Not provided';
 
 // Remove port if present in the X-Forwarded-For header
-$xffHeader = strtok($xffHeader, ":");
-
-// Get geolocation data for the X-Forwarded-For header
-$xffGeolocation = getGeolocationData($xffHeader);
+$xffHeaderParts = explode(":", $xffHeader);
+$xffHeaderWithoutPort = $xffHeaderParts[0];
+$xffGeolocation = getGeolocationData($xffHeaderWithoutPort);
 
 // Output both the X-Forwarded-For header, actual client IP, and geolocation information
-echo "X-Forwarded-For Header: $xffHeader<br>";
+echo "X-Forwarded-For Header: $xffHeaderWithoutPort<br>";
 echo "Actual Client IP: $clientIp<br>";
 
 // Output geolocation information for the actual client IP
