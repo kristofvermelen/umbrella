@@ -22,10 +22,18 @@ function getGeolocationData($ip) {
 //$clientIp = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'Not provided';
 $clientIp = isset($headers['X-Client-Ip']) ? $$headers['X-Client-Ip'] : 'Not provided';
 
-// Store Client-Ip in the variable
-$clientIpHeader = isset($headers['Client-Ip']) ? $headers['Client-Ip'] : '';
+// Get all HTTP headers
+$headers = getallheaders();
 
-echo "test $clientIpHeader<br><br>";
+// Output all HTTP headers
+echo "<br><br>";
+echo "All HTTP Headers:<br><br>";
+foreach ($headers as $key => $value) {
+    //echo "$key: $value<br>";
+    if ($key === 'Client-Ip') {
+        $clientIp = $value;
+    }
+}
 
 
 // Remove port if present in the actual client IP
@@ -65,17 +73,6 @@ if ($xffGeolocation && isset($xffGeolocation['country'])) {
     echo "Geolocation information for X-Forwarded-For not available.<br>";
 }
 
-// Get all HTTP headers
-$headers = getallheaders();
 
-// Output all HTTP headers
-echo "<br><br>";
-echo "All HTTP Headers:<br><br>";
-foreach ($headers as $key => $value) {
-    //echo "$key: $value<br>";
-    if ($key === 'Client-Ip') {
-        echo "Client-Ip found in headers: $value<br>";
-    }
-}
 
 ?>
