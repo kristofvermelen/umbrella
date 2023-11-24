@@ -20,7 +20,7 @@ function getGeolocationData($ip) {
 
 // Get the actual client IP address
 //$clientIp = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'Not provided';
-$clientIp = isset($headers['X-Client-Ip']) ? $headers['X-Client-Ip'] : $_SERVER['REMOTE_ADDR'];
+$clientIp = isset($_SERVER['HTTP_X-Client-Ip']) ? $_SERVER['HTTP_X-Client-Ip'] : $_SERVER['REMOTE_ADDR'];
 
 
 // Remove port if present in the actual client IP
