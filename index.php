@@ -22,6 +22,11 @@ function getGeolocationData($ip) {
 //$clientIp = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'Not provided';
 $clientIp = isset($headers['X-Client-Ip']) ? $$headers['X-Client-Ip'] : 'Not provided';
 
+// Store Client-Ip in the variable
+$clientIpHeader = isset($headers['Client-Ip']) ? $headers['Client-Ip'] : '';
+
+echo "test $clientIpHeader<br><br>";
+
 
 // Remove port if present in the actual client IP
 $clientIpParts = explode(":", $clientIp);
